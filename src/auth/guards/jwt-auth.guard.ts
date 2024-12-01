@@ -16,7 +16,7 @@ export class JwtAuthGuard implements CanActivate {
     private readonly reflector: Reflector,
   ) {}
 
-  canActivate(context: ExecutionContext): boolean {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.get<boolean>(
       IS_PUBLIC_KEY,
       context.getHandler(),
@@ -35,6 +35,9 @@ export class JwtAuthGuard implements CanActivate {
     const token = authHeader.split(' ')[1];
     if (!token) {
       throw new UnauthorizedException('Token is missing');
+    }
+    if (await this.jwtService.isTokenBlacklisted(token)) {
+      throw new UnauthorizedException('Token has been blacklisted');
     }
 
     try {

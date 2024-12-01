@@ -35,4 +35,9 @@ export class AuthService {
       access_token: this.jwtService.generateToken(payload),
     };
   }
+
+  async logout(token: string) {
+    await this.jwtService.addTokenToBlacklist(token);
+    return { message: 'Logout successful' };
+  }
 }

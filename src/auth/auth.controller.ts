@@ -1,4 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { Request } from 'express';
 import { plainToClass } from 'class-transformer';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { User } from 'src/user/user.entity';
@@ -30,6 +38,19 @@ export class AuthController {
     try {
       const user = await this.authService.sign(loginUserDto);
       return plainToClass(User, user);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get('logout')
+  async logout(@Req() req: Request) {
+    try {
+      const token = req.headers.authorization?.split(' ')[1];
+      if (!token) {
+        throw new UnauthorizedException('No token provided');
+      }
+      return this.authService.logout(token);
     } catch (error) {
       throw error;
     }
