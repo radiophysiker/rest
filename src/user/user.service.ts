@@ -127,6 +127,10 @@ export class UserService {
     return this.findOne({ id });
   }
 
+  findByUsername(username: string): Promise<User> {
+    return this.findOne({ username });
+  }
+
   removeById(id: number): Promise<User> {
     return this.removeOne({ id });
   }
