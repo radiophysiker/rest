@@ -1,13 +1,19 @@
 import { Exclude } from 'class-transformer';
+import { UserCourseAccess } from '../course-access/user-course-access.entity';
+import { Comment } from '../comment/comment.entity';
 import {
+  Check,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Rating } from '../rating/rating.entity';
 
 @Entity()
+@Check(`role IN ('user', 'author', 'admin')`)
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -28,9 +34,21 @@ export class User {
   @Exclude()
   password: string;
 
+  @Column({ default: 'user' })
+  role: 'user' | 'author' | 'admin';
+
   @Column({ length: 200, nullable: true })
   about?: string;
 
   @Column({ default: 'https://i.pravatar.cc/300' })
   avatar?: string;
+
+  @OneToMany(() => UserCourseAccess, (access) => access.user)
+  courses: UserCourseAccess[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
+
+  @OneToMany(() => Rating, (rating) => rating.user)
+  ratings: Rating[];
 }

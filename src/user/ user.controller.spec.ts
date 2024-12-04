@@ -15,8 +15,12 @@ describe('UserController', () => {
     username: 'testuser',
     email: 'test@example.com',
     password: 'hashedpassword',
+    role: 'user',
     createdAt: new Date(),
     updatedAt: new Date(),
+    courses: [],
+    comments: [],
+    ratings: [],
   };
 
   const mockUserService = {

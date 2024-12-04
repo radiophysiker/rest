@@ -5,6 +5,14 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { CourseModule } from './course/course.module';
+import { CourseAccessModule } from './course-access/course-access.module';
+import { LessonModule } from './lesson/lesson.module';
+import { CommentModule } from './comment/comment.module';
+import { RatingModule } from './rating/rating.module';
+import { CourseTagModule } from './course-tag/course-tag.module';
+import { TagModule } from './tag/tag.module';
+import { ResourceModule } from './resource/resource.module';
 
 @Module({
   imports: [
@@ -27,6 +35,14 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     }),
     AuthModule,
     UserModule,
+    CourseModule,
+    CourseAccessModule,
+    LessonModule,
+    CommentModule,
+    RatingModule,
+    CourseTagModule,
+    TagModule,
+    ResourceModule,
   ],
   controllers: [],
   providers: [
