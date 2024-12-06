@@ -5,7 +5,7 @@ import {
   TableInheritance,
   ManyToOne,
 } from 'typeorm';
-import { Lesson } from '../lesson/lesson.entity';
+import { Lesson } from 'src/lesson/lesson.entity';
 
 @Entity()
 @TableInheritance({ column: { type: 'varchar', name: 'type' } })

@@ -4,8 +4,8 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { User } from '../user/user.entity';
-import { Course } from '../course/course.entity';
+import { User } from 'src/user/user.entity';
+import { Course } from 'src/course/course.entity';
 
 @Entity()
 export class UserCourseAccess {

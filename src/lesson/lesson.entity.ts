@@ -5,10 +5,10 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Course } from '../course/course.entity';
-import { Comment } from '../comment/comment.entity';
-import { Rating } from '../rating/rating.entity';
-import { Resource } from '../resource/resource.entity';
+import { Course } from 'src/course/course.entity';
+import { Comment } from 'src/comment/comment.entity';
+import { Rating } from 'src/rating/rating.entity';
+import { Resource } from 'src/resource/resource.entity';
 
 @Entity()
 export class Lesson {

@@ -7,12 +7,12 @@ import {
   CreateDateColumn,
   Check,
 } from 'typeorm';
-import { User } from '../user/user.entity';
-import { UserCourseAccess } from '../course-access/user-course-access.entity';
-import { Lesson } from '../lesson/lesson.entity';
-import { Comment } from '../comment/comment.entity';
-import { Rating } from '../rating/rating.entity';
-import { CourseTag } from '../course-tag/course-tag.entity';
+import { User } from 'src/user/user.entity';
+import { UserCourseAccess } from 'src/course-access/user-course-access.entity';
+import { Lesson } from 'src/lesson/lesson.entity';
+import { Comment } from 'src/comment/comment.entity';
+import { Rating } from 'src/rating/rating.entity';
+import { CourseTag } from 'src/course-tag/course-tag.entity';
 
 @Entity()
 @Check(`level IN ('beginner', 'intermediate', 'advanced')`)

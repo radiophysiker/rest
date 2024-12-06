@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { FindOptionsWhere, Repository } from 'typeorm';
 import { User } from './user.entity';
-import { RoleEnum } from '../common/enums/roles.enum';
+import { RoleEnum } from 'src/common/enums/roles.enum';
 
 @Injectable()
 export class UserService {

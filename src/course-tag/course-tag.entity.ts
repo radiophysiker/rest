@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
-import { Course } from '../course/course.entity';
-import { Tag } from '../tag/tag.entity';
+import { Course } from 'src/course/course.entity';
+import { Tag } from 'src/tag/tag.entity';
 
 @Entity()
 export class CourseTag {
