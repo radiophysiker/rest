@@ -11,6 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Rating } from '../rating/rating.entity';
+import { RoleEnum } from '../common/enums/roles.enum';
 
 @Entity()
 @Check(`role IN ('user', 'author', 'admin')`)
@@ -34,8 +35,12 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column({ default: 'user' })
-  role: 'user' | 'author' | 'admin';
+  @Column({
+    type: 'enum',
+    enum: RoleEnum,
+    default: RoleEnum.USER,
+  })
+  role: RoleEnum;
 
   @Column({ length: 200, nullable: true })
   about?: string;

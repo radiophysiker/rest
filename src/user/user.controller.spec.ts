@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { NotFoundException } from '@nestjs/common';
+import { RoleEnum } from '../common/enums/roles.enum';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -15,7 +16,7 @@ describe('UserController', () => {
     username: 'testuser',
     email: 'test@example.com',
     password: 'hashedpassword',
-    role: 'user',
+    role: RoleEnum.USER,
     createdAt: new Date(),
     updatedAt: new Date(),
     courses: [],
