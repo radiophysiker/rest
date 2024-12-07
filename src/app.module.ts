@@ -13,6 +13,7 @@ import { RatingModule } from './rating/rating.module';
 import { CourseTagModule } from './course-tag/course-tag.module';
 import { TagModule } from './tag/tag.module';
 import { ResourceModule } from './resource/resource.module';
+import { RolesGuard } from './auth/guards/roles.guard';
 
 @Module({
   imports: [
@@ -49,6 +50,10 @@ import { ResourceModule } from './resource/resource.module';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })

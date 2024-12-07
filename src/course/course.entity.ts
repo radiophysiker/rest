@@ -13,6 +13,7 @@ import { Lesson } from 'src/lesson/lesson.entity';
 import { Comment } from 'src/comment/comment.entity';
 import { Rating } from 'src/rating/rating.entity';
 import { CourseTag } from 'src/course-tag/course-tag.entity';
+import { LevelEnum } from './enums/level.enum';
 
 @Entity()
 @Check(`level IN ('beginner', 'intermediate', 'advanced')`)
@@ -20,14 +21,14 @@ export class Course {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, unique: true })
   title: string;
 
   @Column('text')
   description: string;
 
-  @Column({ default: 'beginner' })
-  level: 'beginner' | 'intermediate' | 'advanced';
+  @Column({ type: 'enum', enum: LevelEnum, default: LevelEnum.BEGINNER })
+  level: LevelEnum;
 
   @CreateDateColumn()
   createdAt: Date;
