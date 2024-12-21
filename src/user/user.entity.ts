@@ -1,6 +1,6 @@
 import { Exclude } from 'class-transformer';
-import { UserCourseAccess } from '../course-access/user-course-access.entity';
-import { Comment } from '../comment/comment.entity';
+import { UserCourseAccess } from 'src/course-access/user-course-access.entity';
+import { Comment } from 'src/comment/comment.entity';
 import {
   Check,
   Column,
@@ -10,7 +10,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Rating } from '../rating/rating.entity';
+import { Rating } from 'src/rating/rating.entity';
+import { RoleEnum } from 'src/common/enums/roles.enum';
 
 @Entity()
 @Check(`role IN ('user', 'author', 'admin')`)
@@ -34,8 +35,12 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column({ default: 'user' })
-  role: 'user' | 'author' | 'admin';
+  @Column({
+    type: 'enum',
+    enum: RoleEnum,
+    default: RoleEnum.USER,
+  })
+  role: RoleEnum;
 
   @Column({ length: 200, nullable: true })
   about?: string;

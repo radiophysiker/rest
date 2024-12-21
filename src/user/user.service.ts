@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { FindOptionsWhere, Repository } from 'typeorm';
 import { User } from './user.entity';
+import { RoleEnum } from 'src/common/enums/roles.enum';
 
 @Injectable()
 export class UserService {
@@ -35,7 +36,7 @@ export class UserService {
 
     const user = this.userRepository.create({
       ...rest,
-      role: 'user',
+      role: RoleEnum.USER,
       password: hashedPassword,
     });
     return await this.userRepository.save(user);
